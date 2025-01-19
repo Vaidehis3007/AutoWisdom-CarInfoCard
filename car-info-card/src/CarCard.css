@@ -1,0 +1,228 @@
+.car-card {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .car-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .discount-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #0d9488;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 1;
+  }
+  
+  .favorite-button {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    font-size: 20px;
+    color: #999;
+    transition: all 0.3s ease;
+  }
+  
+  .favorite-button.active {
+    color: #e11d48;
+  }
+  
+  .card-image {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .car-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .card-content {
+    padding: 16px;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  
+  .card-header h3 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .availability {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .availability.in-stock {
+    color: #22c55e;
+  }
+  
+  .availability.out-of-stock {
+    color: #ef4444;
+  }
+  
+  .price {
+    text-align: right;
+  }
+  
+  .price p {
+    margin: 0;
+  }
+  
+  .price .discounted {
+    color: #0d9488;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  
+  .price .original {
+    color: #6b7280;
+    text-decoration: line-through;
+    font-size: 14px;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .star {
+    color: #d1d5db;
+    font-size: 16px;
+  }
+  
+  .star.filled {
+    color: #0d9488;
+  }
+  
+  .star.half {
+    position: relative;
+    color: #0d9488;
+  }
+  
+  .rating-number {
+    color: #6b7280;
+    font-size: 14px;
+    margin-left: 4px;
+  }
+  
+  .card-footer {
+    padding: 16px;
+    padding-top: 0;
+  }
+  
+  .details-button {
+    width: 100%;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid #0d9488;
+    color: #0d9488;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .details-button:hover {
+    background: #f0fdfa;
+  }
+  
+  /* Modal styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .modal-header {
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #6b7280;
+  }
+  
+  .modal-content {
+    padding: 16px;
+  }
+  
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+  }
+  
+  .price-row.discount {
+    color: #0d9488;
+  }
+  
+  .price-row.total {
+    border-top: 1px solid #e5e7eb;
+    margin-top: 8px;
+    padding-top: 16px;
+    font-weight: 600;
+  }
