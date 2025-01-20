@@ -36,7 +36,7 @@ const CarCard = ({
   };
 
   return (
-    <div className="car-card">
+    <div className={`car-card ${isModalOpen ? 'modal-open' : ''}`}>
       {/* Discount Badge */}
       {discountPercent && (
         <div className="discount-badge">
@@ -53,7 +53,7 @@ const CarCard = ({
       </button>
 
       <div className="card-image">
-        <img src="/api/placeholder/300/200" alt={name} />
+        <img src={imageUrl} alt={name} />
       </div>
 
       <div className="card-content">
@@ -83,17 +83,27 @@ const CarCard = ({
       </div>
 
       <div className="card-footer">
-        <button 
+      <button 
           className="details-button"
-          onClick={() => setIsModalOpen(true)}
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent event bubbling
+            setIsModalOpen(true);
+          }}
         >
           View Price Details
         </button>
       </div>
 
       {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal">
+        <div className="modal-overlay"
+        onClick={(e) => {
+          e.stopPropagation(); 
+          setIsModalOpen(false);
+        }}
+        >
+          <div className="modal"
+          onClick={(e) => e.stopPropagation()}
+          >
             <div className="modal-header">
               <h2>Price Breakdown - {name}</h2>
               <button 

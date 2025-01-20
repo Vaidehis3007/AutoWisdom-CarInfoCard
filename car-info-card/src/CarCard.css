@@ -172,16 +172,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 9999;
   }
   
   .modal {
+    position: relative;
     background: white;
     border-radius: 8px;
     width: 90%;
     max-width: 500px;
     max-height: 90vh;
     overflow-y: auto;
+    z-index: 10000;
+  }
+  .modal-open {
+    pointer-events: none;
+  }
+  
+  .modal-open .modal-overlay {
+    pointer-events: auto;
   }
   
   .modal-header {

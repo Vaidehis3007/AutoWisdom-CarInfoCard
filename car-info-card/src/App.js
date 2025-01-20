@@ -1,11 +1,14 @@
 import React from 'react';
 import CarCard from './CarCard';
 import './App.css';
+import teslaImage from './images/tesla.jpg'
+import bmwImage from './images/bmw.jpg'
+import fordImage from './images/ford.jpg'
 
 const App = () => {
   const carData = [
     { 
-      imageUrl: '/api/placeholder/300/200', 
+      imageUrl: teslaImage, 
       name: 'Tesla Model 3', 
       price: 39990, 
       discountedPrice: 37990, 
@@ -13,14 +16,14 @@ const App = () => {
       availability: 'In Stock' 
     },
     { 
-      imageUrl: '/api/placeholder/300/200', 
+      imageUrl: fordImage, 
       name: 'Ford Mustang', 
       price: 27155, 
       rating: 4.5, 
       availability: 'Out of Stock' 
     },
     { 
-      imageUrl: '/api/placeholder/300/200', 
+      imageUrl: bmwImage, 
       name: 'BMW 3 Series', 
       price: 41250, 
       discountedPrice: 39500, 
