@@ -6,11 +6,13 @@ const CarCard = ({
   name, 
   price, 
   discountedPrice, 
-  rating, 
+  rating: initialRating, 
   availability 
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [rating, setRating] = useState(initialRating);
+  const [hoverRating, setHoverRating] = useState(0);
   const modalRef = useRef(null);
 
   // Calculate discount percentage
@@ -18,22 +20,14 @@ const CarCard = ({
     ? Math.round(((price - discountedPrice) / price) * 100) 
     : null;
 
-  // Generate rating stars
-  const renderStars = (rating) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
+  // Handle rating hover
+  const handleRatingHover = (index) => {
+    setHoverRating(index);
+  };
 
-    for (let i = 0; i < 5; i++) {
-      if (i < fullStars) {
-        stars.push(<span key={i} className="star filled">★</span>);
-      } else if (i === fullStars && hasHalfStar) {
-        stars.push(<span key={i} className="star half">★</span>);
-      } else {
-        stars.push(<span key={i} className="star">★</span>);
-      }
-    }
-    return stars;
+  // Handle rating change
+  const handleRatingChange = (index) => {
+    setRating(index);
   };
 
   useEffect(() => {
@@ -52,7 +46,6 @@ const CarCard = ({
 
   return (
     <div className={`car-card ${isModalOpen ? 'modal-open' : ''}`}>
-
       {/* Discount Badge */}
       {discountPercent && (
         <div className="discount-badge">
@@ -93,16 +86,26 @@ const CarCard = ({
         </div>
 
         <div className="rating">
-          {renderStars(rating)}
+          {[1, 2, 3, 4, 5].map((index) => (
+            <span
+              key={index}
+              className={`star ${(hoverRating || rating) >= index ? 'filled' : ''}`}
+              onMouseEnter={() => handleRatingHover(index)}
+              onMouseLeave={() => handleRatingHover(0)}
+              onClick={() => handleRatingChange(index)}
+            >
+              ★
+            </span>
+          ))}
           <span className="rating-number">({rating})</span>
         </div>
       </div>
 
       <div className="card-footer">
-      <button 
+        <button 
           className="details-button"
           onClick={(e) => {
-            e.stopPropagation(); // Prevent event bubbling
+            e.stopPropagation();
             setIsModalOpen(true);
           }}
         >
@@ -111,12 +114,8 @@ const CarCard = ({
       </div>
 
       {isModalOpen && (
-        <div className="modal-overlay"
-        ref={modalRef}
-        >
-          <div className="modal"
-          onClick={(e) => e.stopPropagation()}
-          >
+        <div className="modal-overlay" ref={modalRef}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Price Breakdown - {name}</h2>
               <button 
