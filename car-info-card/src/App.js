@@ -33,7 +33,16 @@ const App = () => {
   ];
 
   return (
-    <div className="app">
+    <div className='app'>
+      <nav className='navbar'>
+        <div className='navbar-brand'>
+          <h1>Auto Wisdom</h1>
+        </div>
+        <div className='navbar-actions'>
+          <button className='login-button'>Login</button>
+        </div>
+      </nav>
+      <main>
       <div className="container">
         <h1>Featured Cars</h1>
         <div className="car-grid">
@@ -45,6 +54,7 @@ const App = () => {
           ))}
         </div>
       </div>
+      </main>
     </div>
   );
 };

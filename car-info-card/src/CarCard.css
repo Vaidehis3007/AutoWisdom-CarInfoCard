@@ -1,3 +1,47 @@
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: teal; 
+    padding: 10px 20px;
+    color: ffff;
+    position: sticky; 
+    top: 0;
+    z-index: 100;
+  }
+  
+  .navbar-brand h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    color: #ffff;
+  }
+  
+  /* Navbar actions */
+  .navbar-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  /* Login button styling */
+   .login-button {
+    background-color: #ffff;
+    color: teal;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1.25em;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #22c55e;
+    color: #ffff;
+  }  
 .car-card {
     position: relative;
     width: 100%;
@@ -6,10 +50,39 @@
     background: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-  }
+}
   
+.car-card:hover .card-image img{
+    transform: scale(1.05);
+}
+
   .car-card:hover {
-    transform: translateY(-4px);
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.car-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 2rem;
+    padding: 2rem;
+}
+
+.container {
+  margin: 2rem;
+}
+
+.car-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+  .modal-open:hover .car-image img{
+    transform: none;
   }
   
   .discount-badge {
@@ -43,7 +116,7 @@
   }
   
   .favorite-button.active {
-    color: #e11d48;
+    color: #0d9488;
   }
   
   .card-image {
@@ -163,7 +236,7 @@
   
   /* Modal styles */
   .modal-overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -172,7 +245,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 2;
   }
   
   .modal {

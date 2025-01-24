@@ -37,6 +37,7 @@ const CarCard = ({
 
   return (
     <div className={`car-card ${isModalOpen ? 'modal-open' : ''}`}>
+
       {/* Discount Badge */}
       {discountPercent && (
         <div className="discount-badge">
