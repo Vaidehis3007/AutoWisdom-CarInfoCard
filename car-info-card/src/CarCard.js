@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './CarCard.css';
 
 const CarCard = ({ 
@@ -11,6 +11,7 @@ const CarCard = ({
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalRef = useRef(null);
 
   // Calculate discount percentage
   const discountPercent = discountedPrice 
@@ -34,6 +35,20 @@ const CarCard = ({
     }
     return stars;
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setIsModalOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [modalRef]);
 
   return (
     <div className={`car-card ${isModalOpen ? 'modal-open' : ''}`}>
@@ -97,10 +112,7 @@ const CarCard = ({
 
       {isModalOpen && (
         <div className="modal-overlay"
-        onClick={(e) => {
-          e.stopPropagation(); 
-          setIsModalOpen(false);
-        }}
+        ref={modalRef}
         >
           <div className="modal"
           onClick={(e) => e.stopPropagation()}
