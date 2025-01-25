@@ -11,9 +11,6 @@ const CarCard = ({
   availability 
 }) => {
   const { addFavorite, removeFavorite, favorites} = useFavorites();
-  const [isFavorite, setIsFavorite] = useState(
-    favorites.some(car => car.name === name)
-  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [rating, setRating] = useState(initialRating);
   const [hoverRating, setHoverRating] = useState(0);
@@ -23,6 +20,8 @@ const CarCard = ({
   const discountPercent = discountedPrice 
     ? Math.round(((price - discountedPrice) / price) * 100) 
     : null;
+
+    const isFavorite = favorites.some(car => car.name === name);
 
     const handleFavoriteToggle = () => {
       const carDetails = { 
@@ -35,10 +34,8 @@ const CarCard = ({
   
       if (isFavorite) {
         removeFavorite(name);
-        setIsFavorite(false);
       } else {
         addFavorite(carDetails);
-        setIsFavorite(true);
       }
     };
   
