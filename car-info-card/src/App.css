@@ -6,6 +6,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 5px 5px;
 }
 
 h1 {
@@ -26,7 +27,6 @@ h1 {
   .app {
     padding: 16px;
   }
-
   h1 {
     font-size: 24px;
     margin-bottom: 24px;

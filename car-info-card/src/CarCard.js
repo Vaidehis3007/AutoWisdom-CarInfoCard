@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useFavorites } from './Favourites';
 import './CarCard.css';
 
 const CarCard = ({ 
@@ -9,7 +10,10 @@ const CarCard = ({
   rating: initialRating, 
   availability 
 }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { addFavorite, removeFavorite, favorites} = useFavorites();
+  const [isFavorite, setIsFavorite] = useState(
+    favorites.some(car => car.name === name)
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [rating, setRating] = useState(initialRating);
   const [hoverRating, setHoverRating] = useState(0);
@@ -19,6 +23,25 @@ const CarCard = ({
   const discountPercent = discountedPrice 
     ? Math.round(((price - discountedPrice) / price) * 100) 
     : null;
+
+    const handleFavoriteToggle = () => {
+      const carDetails = { 
+        imageUrl, 
+        name, 
+        price, 
+        discountedPrice, 
+        availability 
+      };
+  
+      if (isFavorite) {
+        removeFavorite(name);
+        setIsFavorite(false);
+      } else {
+        addFavorite(carDetails);
+        setIsFavorite(true);
+      }
+    };
+  
 
   // Handle rating hover
   const handleRatingHover = (index) => {
@@ -55,7 +78,7 @@ const CarCard = ({
       
       {/* Favorite Button */}
       <button
-        onClick={() => setIsFavorite(!isFavorite)}
+        onClick={handleFavoriteToggle}
         className={`favorite-button ${isFavorite ? 'active' : ''}`}
       >
         ♥
