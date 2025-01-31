@@ -42,6 +42,11 @@ h1 {
   font-size: 0.75rem;
 }
 
+.favorites-toggle :hover{
+    background-color: #22c55e;
+    color: #ffff;
+}
+
 .favorites-dropdown {
   position: absolute;
   top: 100%;
